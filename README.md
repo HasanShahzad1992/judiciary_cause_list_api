@@ -1,0 +1,1 @@
+This is a small demo of front end and back end, where clients can access their respective court hearing dates. The clients need to  provide their  their city in which the case being heard, name of judge that is presiding over their trial cases and the date for which the case is fixed. For demo purposes, only court case for 18th, April, 2025 has been used.
