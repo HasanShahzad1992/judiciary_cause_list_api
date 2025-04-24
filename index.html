@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            font-family: "Roboto",sans-serif;
+        }
+        #heading_id {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        #container_div_id{
+            width: 1000px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding:30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        span{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        select, input{
+            display: block;
+            margin:10px 0;
+            border-radius: 6px;
+            padding:10px;
+            max-width: 400px;
+            width: 100%;
+            border:1px solid #ccc;
+            font-size: 16px;
+        }
+        h1,h3,h4{
+            margin:0;
+            padding-bottom: 10px;
+        }
+        #button_id{
+            background: #007BFF;
+            color:white;
+            cursor: pointer;
+            transition:background-color 4s linear;
+        }
+        #button_id:hover{
+            background-color: #0056b3;
+        }
+        #subsection_one{
+            margin-bottom: 30px;
+        }
+        #div_for_judge_and_date{
+            border-left: 4px solid #007BFF;
+            padding:15px;
+            border-radius: 6px;
+            background-color: #eef2ff;
+            font-weight: bold;
+        }
+        th{
+            color:white;
+            background-color: #007BFF;
+            padding:12px;
+            text-transform: uppercase;
+            border:1px solid #ddd
+        }
+        td{
+            padding:12px;
+            border:1px solid #ddd
+        }
+        table{
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+<body>
+<div id="heading_id">
+<h1>
+  Case Management System
+</h1>
+<h3>
+  District Judiciary, Punjab
+</h3>
+</div>
+
+<div id="container_div_id">
+    <div id="subsection_one">
+        <span>
+    Select District
+        </span>
+        <select id="district_dropdown_id">
+            <option>
+                Select District Name
+            </option>
+            <option value="Rawalpindi">
+                Rawalpindi
+            </option>
+            <option value="Lahore">
+                Lahore
+            </option>
+            <option value="Jauharabad">
+                Jauharabad
+            </option>
+            <option value="Sialkot">
+                Sialkot
+            </option>
+            <option value="Multan">
+                Multan
+            </option>
+        </select>
+
+        <h3 id="cause_id">
+            Cause List
+        </h3>
+        <h4 id="court_id_id">
+            Select Court Name
+        </h4>
+        <select id="judges_dropdown_id">
+            <option>
+                Select Court Name
+            </option>
+        </select>
+
+        <input type="date" id="date_id">
+        <input type="button" value="View" id="button_id">
+    </div>
+
+
+    <div id="subsection_two">
+        <div id="div_for_judge_and_date">
+
+        </div>
+        <div id="div_for_table">
+
+        </div>
+  </div>
+</div>
+
+<script>
+  let access_district_select_dropdown=document.getElementById("district_dropdown_id");
+  let access_judges_select_dropdown=document.getElementById("judges_dropdown_id");
+  let access_date=document.getElementById("date_id");
+  let access_view_button=document.getElementById("button_id");
+  let access_main_container=document.getElementById("main_container");
+  let access_table_div=document.getElementById("div_for_table");
+  let access_div_judge_date=document.getElementById("div_for_judge_and_date");
+
+  access_district_select_dropdown.addEventListener("change",async function(){
+    access_judges_select_dropdown.innerHTML="";
+    let district_chosen_by_user=access_district_select_dropdown.value;
+    if(district_chosen_by_user==="Rawalpindi"){
+      let list_of_judges_in_Rawalpindi=["Sardar Muhammad Akram Khan, DSJ, Rawalpindi","Malik Noor Khan, AD&SJ, Rawalpindi","Mr. Akram-ul-Haq Ch, AD&SJ, Rawalpindi"];
+      for(let i=0;i<list_of_judges_in_Rawalpindi.length;i=i+1){
+        let create_option_tag_judges_rawalpindi=document.createElement("option");
+        create_option_tag_judges_rawalpindi.innerHTML=list_of_judges_in_Rawalpindi[i];
+        access_judges_select_dropdown.append(create_option_tag_judges_rawalpindi);
+      }
+    }
+    if(district_chosen_by_user==="Lahore"){
+      let list_of_judges_in_Lahore=["Mr. Naseem Ahmad Virk, DSJ, Lahore","Mr. Muhammad Naeem, GJ, Lahore","Mr. Rashid Afzal, GJ, Lahore"];
+      for(let i=0;i<list_of_judges_in_Lahore.length;i=i+1){
+        let create_option_tag_judges_Lahore=document.createElement("option");
+        create_option_tag_judges_Lahore.innerHTML=list_of_judges_in_Lahore[i];
+        access_judges_select_dropdown.append(create_option_tag_judges_Lahore);
+      }
+    }
+    if(district_chosen_by_user==="Jauharabad"){
+      let list_of_judges_in_Jauharabad=["Mr. Muhammad Aslam Gondal, DSJ, Jauharabad","Mr. Ahmad Kamran, AD&SJ, Jauharabad","Mr. Shahzad Ehsan Butt, SCJ (Civil Division), Jauharabad"];
+      for(let i=0;i<list_of_judges_in_Jauharabad.length;i=i+1){
+        let create_option_tag_judges_Jauharabad=document.createElement("option");
+        create_option_tag_judges_Jauharabad.innerHTML=list_of_judges_in_Jauharabad[i];
+        access_judges_select_dropdown.append(create_option_tag_judges_Jauharabad);
+      }
+    }
+    if(district_chosen_by_user==="Sialkot"){
+      let list_of_judges_in_Sialkot=["Mr. Nadeem Tahir Syed, DSJ, Sialkot","Mr. Khalid Saeed Wattoo, AD&SJ, Sialkot","Mr. Liaqat Ali Ranjha, AD&SJ, Sialkot"];
+      for(let i=0;i<list_of_judges_in_Sialkot.length;i=i+1){
+        let create_option_tag_judges_Sialkot=document.createElement("option");
+        create_option_tag_judges_Sialkot.innerHTML=list_of_judges_in_Sialkot[i];
+        access_judges_select_dropdown.append(create_option_tag_judges_Sialkot);
+      }
+    }
+    if(district_chosen_by_user==="Multan"){
+      let list_of_judges_Multan=["Mr. Abdur Raheem, DSJ, Multan","Mr. Alam Shair, AD&SJ, Multan","Mr. Fiaz Hussain, AD&SJ, Multan"];
+      let create_option_tag_judges_Multan=document.createElement("option");
+      for(let i=0;i<list_of_judges_Multan.length;i=i+1){
+        let create_option_tag_judges_Multan=document.createElement("option");
+        create_option_tag_judges_Multan.innerHTML=list_of_judges_Multan[i];
+        access_judges_select_dropdown.append(create_option_tag_judges_Multan);
+      }
+    }
+  });
+  access_view_button.addEventListener("click",async function(){
+    access_table_div.innerHTML="";
+    access_div_judge_date.innerHTML="";
+    let district_chosen_by_user=access_district_select_dropdown.value;
+    let judge_selected_by_user=access_judges_select_dropdown.value;
+    let date_selected_by_user=access_date.value;
+
+    let dict_to_be_sent_to_backend={"district":district_chosen_by_user,"judge":judge_selected_by_user,"date":date_selected_by_user}
+    let url=" http://127.0.0.1:8000/request_from_front_end_judiciary_dates";
+    let additional_data={
+      "method":"POST",
+      "headers":{"Content-Type":"application/json"},
+      "body":JSON.stringify(dict_to_be_sent_to_backend)
+    }
+    let response=await fetch(url,additional_data);
+    let json_data=await response.json();
+    let length_of_rows_in_json_data=json_data["data_to_be_sent_to_front_end"].length;
+    console.log(json_data["data_to_be_sent_to_front_end"])
+
+
+    let name_of_judge=json_data["data_to_be_sent_to_front_end"][0]["judge"];
+    let name_of_district=json_data["data_to_be_sent_to_front_end"][0]["district"];
+    let date_of_case_for_client=json_data["data_to_be_sent_to_front_end"][0]["date_of_case"];
+
+    let complete_sentence="Honourable " + name_of_judge + " judge of district " + name_of_district + " The following is the cause list for date " + date_of_case_for_client
+
+    access_div_judge_date.append(complete_sentence);
+    
+
+
+    let create_table=document.createElement("table");
+
+    let create_thead=document.createElement("thead");
+    let create_thead_tr=document.createElement("tr");
+    let list_of_column_headings=["serial_number","case_number","date_of_filing_of_case","litigants_of_case","title_of_case"];
+
+
+    for(let i=0;i<list_of_column_headings.length;i=i+1){
+        let create_thead_th=document.createElement("th");
+        create_thead_th.innerHTML=list_of_column_headings[i];
+        create_thead_tr.append(create_thead_th);
+    }
+      create_thead.append(create_thead_tr);
+      create_table.append(create_thead);
+
+
+      access_table_div.append(create_table);
+
+
+   let create_tbody=document.createElement("tbody");
+   let counter_for_serial_number=0;
+   for(let i=0;i<length_of_rows_in_json_data;i=i+1){
+       counter_for_serial_number=counter_for_serial_number+1;
+       let create_tbody_tr=document.createElement("tr");
+       for (let j=0;j<list_of_column_headings.length;j=j+1){
+           let create_tbody_td=document.createElement("td");
+           if(list_of_column_headings[j]==="serial_number"){
+               create_tbody_td.innerHTML=counter_for_serial_number;
+           }
+           else{
+               create_tbody_td.innerHTML=json_data["data_to_be_sent_to_front_end"][i][list_of_column_headings[j]];
+           }
+           create_tbody_tr.append(create_tbody_td);
+       }
+       create_tbody.append(create_tbody_tr);
+   }
+      create_table.append(create_tbody);
+      access_table_div.append(create_table);
+  });
+
+</script>
+</body>
+</html>
